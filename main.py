@@ -117,5 +117,15 @@ async def remove(ctx):
     else:
         await ctx.send("Kamu belum memiliki Pokémon, jadi tidak ada yang bisa dihapus.")
 
+@bot.command()
+async def feed(ctx):
+    author = ctx.author.name
+    if author in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[author]
+        response = await pokemon.feed()
+        await ctx.send(response)
+    else:
+        await ctx.send("You don't have pokemon, please make it first with !go")
+
 # Running the bot
 bot.run(token)
